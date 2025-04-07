@@ -36,4 +36,31 @@ describe('src > models > unit > Match', () => {
         new Match('Home Team', 'Away Team');
         expect(generateUUID).toHaveBeenCalledTimes(3);
     });
+
+    it('should update home team score correctly', () => {
+        const match = new Match('Team A', 'Team B');
+        match.updateHomeTeamScore(10);
+
+        expect(match.homeTeam.score).toBe(10);
+    });
+
+    it('should update away team score correctly', () => {
+        const match = new Match('Team A', 'Team B');
+        match.updateAwayTeamScore(15);
+
+        expect(match.awayTeam.score).toBe(15);
+    });
+
+    it('should throw an error if the new score is not a number', () => {
+        const match = new Match('Team A', 'Team B');
+
+        expect(() => match.updateHomeTeamScore(NaN)).toThrow('Invalid score');
+    });
+
+    it('should throw an error if the new score is less than or equal to the current score', () => {
+        const match = new Match('Team A', 'Team B');
+        match.updateHomeTeamScore(10);
+
+        expect(() => match.updateHomeTeamScore(5)).toThrow('Invalid score');
+    });
 });
