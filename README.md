@@ -1,23 +1,18 @@
-# Frontend Boilerplate
+# Scoreboard Library
 
 ## Project Description
 
-**Frontend Boilerplate** is a starter template for frontend projects, providing all the necessary tools and configurations to quickly kickstart new applications. The project is optimized for performance, scalability, and maintainability.
-
+Welcome to the Live Football World Cup Scoreboard Library repository! This project is a frontend application built with TypeScript that provides real-time updates on all ongoing matches and their scores during the Football World Cup.
 ## Features
 
 - **Modular code structure**: Simplifies management and development of the application.
-- **Preconfigured tools**: Support for Vite, ESLint, Prettier, and more.
-- **Responsive design**: Ready-to-use components and styles that work across various devices.
-- **SCSS support**: Easier management of styles and variables.
+- **Preconfigured tools**: Support for ESLint, Prettier, and more.
 - **Task automation**: Scripts for building, testing, and deploying the application.
 
 ## Project includes:
-- **React 19+**
 - **TypeScript 5+**
 - **EsLint 9+**
 - **Prettier 3+**
-- **Vite 6+**
 - **Jest 29+**
 
 ## Requirements
@@ -28,11 +23,11 @@
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Osirys25/frontend-boilerplate.git
+    git clone https://github.com/Osirys25/scoreboard-library.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd frontend-boilerplate
+    cd scoreboard-library
     ```
 3. Install dependencies:
     ```bash
@@ -41,17 +36,9 @@
 
 ## Running the Project
 
-To run the project in development mode, use the following command:
+To run the project, use the following command:
 ```bash
-  npm run start
-```
-
-The application will be available at http://localhost:3000.
-
-## Building the Project
-To build the project for production, use the following command:
-```bash
-  npm run build
+  npm run test
 ```
 
 ## Linting the Project
