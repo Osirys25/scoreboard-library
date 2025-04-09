@@ -6,7 +6,11 @@ jest.mock('../../models/match', () => {
             .fn()
             .mockImplementation(
                 (homeTeamName: string, awayTeamName: string) => {
-                    return {homeTeamName, awayTeamName, createdAt: new Date()};
+                    return {
+                        homeTeam: {name: homeTeamName},
+                        awayTeam: {name: awayTeamName},
+                        createdAt: new Date(),
+                    };
                 }
             ),
     };
@@ -27,8 +31,8 @@ describe('src > controllers > unit > LiveScoreboard', () => {
         scoreboard.addMatch('Team A', 'Team B');
         expect(scoreboard.table.length).toBe(1);
 
-        expect(scoreboard.table[0].awayTeamName).toEqual('Team B');
-        expect(scoreboard.table[0].homeTeamName).toEqual('Team A');
+        expect(scoreboard.table[0].awayTeam.name).toEqual('Team B');
+        expect(scoreboard.table[0].homeTeam.name).toEqual('Team A');
     });
 
     it('should return a sorted matches table - from the newest do the oldest', async () => {
@@ -40,10 +44,10 @@ describe('src > controllers > unit > LiveScoreboard', () => {
 
         const result = scoreboard.getScoreboard();
 
-        expect(result[0].awayTeamName).toEqual('Team B');
-        expect(result[0].homeTeamName).toEqual('Team A');
+        expect(result[0].awayTeam.name).toEqual('Team B');
+        expect(result[0].homeTeam.name).toEqual('Team A');
 
-        expect(result[1].awayTeamName).toEqual('Team D');
-        expect(result[1].homeTeamName).toEqual('Team C');
+        expect(result[1].awayTeam.name).toEqual('Team D');
+        expect(result[1].homeTeam.name).toEqual('Team C');
     });
 });
