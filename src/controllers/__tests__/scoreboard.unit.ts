@@ -17,9 +17,13 @@ class TestScoreboard extends Scoreboard {
     addMatch(homeTeamName: string, awayTeamName: string) {
         this.table.push(new Match(homeTeamName, awayTeamName));
     }
+
+    getScoreboard(): Match[] {
+        return this.table;
+    }
 }
 
-describe('Scoreboard', () => {
+describe('src > controllers > unit > Scoreboard', () => {
     let scoreboard: TestScoreboard;
 
     beforeEach(() => {
@@ -30,7 +34,7 @@ describe('Scoreboard', () => {
         expect(scoreboard.table).toEqual([]);
     });
 
-    it('should add a score to the table', () => {
+    it('should add a match to the table', () => {
         scoreboard.addMatch('Team A', 'Team B');
         expect(scoreboard.table.length).toBe(1);
 
@@ -38,5 +42,13 @@ describe('Scoreboard', () => {
             awayTeamName: 'Team B',
             homeTeamName: 'Team A',
         });
+    });
+
+    it('should return a matches table', () => {
+        scoreboard.addMatch('Team C', 'Team D');
+
+        expect(scoreboard.getScoreboard()).toEqual([
+            {awayTeamName: 'Team D', homeTeamName: 'Team C'},
+        ]);
     });
 });
