@@ -27,6 +27,8 @@ export class Dashboard {
         this.summaryBoard = new SummaryScoreboard();
     }
 
+    updateLiveScoreboard(): void {}
+
     /**
      * Finishes the match with the given ID.
      * If the match is found and finished, adds it to the summary scoreboard.

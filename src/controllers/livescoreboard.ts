@@ -33,6 +33,8 @@ export class LiveScoreboard extends Scoreboard {
         return removedElement;
     }
 
+    updateMatch(id: string, team: string, score: number): void {}
+
     /**
      * Gets the sorted scoreboard.
      * @returns {Match[]} The sorted array of matches - from the newest to the oldest.
