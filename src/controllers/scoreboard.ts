@@ -20,5 +20,9 @@ export abstract class Scoreboard {
      */
     abstract addMatch(homeTeamName: string, awayTeamName: string): void;
 
+    /**
+     * Gets the sorted scoreboard.
+     * @abstract * @returns {Match[]} The sorted array of matches.
+     */
     abstract getScoreboard(): Match[];
 }
