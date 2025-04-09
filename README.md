@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Welcome to the Live Football World Cup Scoreboard Library repository! This project is a frontend application built with TypeScript that provides real-time updates on all ongoing matches and their scores during the Football World Cup.
+Welcome to the Live Football World Cup Scoreboard Library repository! This project is an application built with TypeScript that provides real-time updates on all ongoing matches and their scores during the Football World Cup.
 ## Features
 
 - **Modular code structure**: Simplifies management and development of the application.
