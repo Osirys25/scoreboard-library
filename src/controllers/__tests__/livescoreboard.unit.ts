@@ -10,6 +10,7 @@ jest.mock('../../models/match', () => {
                         homeTeam: {name: homeTeamName},
                         awayTeam: {name: awayTeamName},
                         createdAt: new Date(),
+                        id: homeTeamName,
                     };
                 }
             ),
@@ -49,5 +50,29 @@ describe('src > controllers > unit > LiveScoreboard', () => {
 
         expect(result[1].awayTeam.name).toEqual('Team D');
         expect(result[1].homeTeam.name).toEqual('Team C');
+    });
+
+    it('should return the match and remove it from the table when the match is found', async () => {
+        scoreboard.addMatch('Team C', 'Team D');
+
+        await new Promise(r => setTimeout(r, 2000));
+
+        scoreboard.addMatch('Team A', 'Team B');
+
+        const result = scoreboard.findAndFinishMatch('Team A');
+        expect(result?.id).toEqual('Team A');
+        expect(scoreboard.table.length).toEqual(1);
+    });
+
+    test('should return null when the match is not found', async () => {
+        scoreboard.addMatch('Team C', 'Team D');
+
+        await new Promise(r => setTimeout(r, 2000));
+
+        scoreboard.addMatch('Team A', 'Team B');
+
+        const result = scoreboard.findAndFinishMatch('Team XYZ');
+        expect(result).toBeNull();
+        expect(scoreboard.table.length).toEqual(2);
     });
 });
