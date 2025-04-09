@@ -27,10 +27,8 @@ describe('src > controllers > unit > LiveScoreboard', () => {
         scoreboard.addMatch('Team A', 'Team B');
         expect(scoreboard.table.length).toBe(1);
 
-        expect(scoreboard.table[0]).toEqual({
-            awayTeamName: 'Team B',
-            homeTeamName: 'Team A',
-        });
+        expect(scoreboard.table[0].awayTeamName).toEqual('Team B');
+        expect(scoreboard.table[0].homeTeamName).toEqual('Team A');
     });
 
     it('should return a sorted matches table - from the newest do the oldest', async () => {
