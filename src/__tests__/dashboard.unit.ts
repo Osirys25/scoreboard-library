@@ -19,6 +19,8 @@ describe('src > unit > Dashboard', () => {
         dashboard = new Dashboard();
         dashboard.liveBoard = mockLiveScoreboard;
         dashboard.summaryBoard = mockSummaryScoreboard;
+
+        mockLiveScoreboard.updateMatch = jest.fn();
     });
 
     it('should initialize liveBoard and summaryBoard', () => {
@@ -56,5 +58,49 @@ describe('src > unit > Dashboard', () => {
         expect(() => dashboard.finishMatch('1')).toThrow('No such match');
         expect(mockLiveScoreboard.findAndFinishMatch).toHaveBeenCalledWith('1');
         expect(mockSummaryScoreboard.addMatch).not.toHaveBeenCalled();
+    });
+
+    it('should update the score for the away team', () => {
+        mockLiveScoreboard.updateMatch.mockReturnValue(true);
+
+        const matchId = '1';
+        const team = 'away';
+        const score = 10;
+
+        dashboard.updateLiveScoreboard(matchId, team, score);
+
+        expect(mockLiveScoreboard.updateMatch).toHaveBeenCalledWith(
+            matchId,
+            team,
+            score
+        );
+    });
+
+    it('should update the score for the home team', () => {
+        mockLiveScoreboard.updateMatch.mockReturnValue(true);
+
+        const matchId = '2';
+        const team = 'home';
+        const score = 20;
+
+        dashboard.updateLiveScoreboard(matchId, team, score);
+
+        expect(mockLiveScoreboard.updateMatch).toHaveBeenCalledWith(
+            matchId,
+            team,
+            score
+        );
+    });
+
+    it('should throw an error if no match with the given id exists', () => {
+        mockLiveScoreboard.updateMatch.mockReturnValue(null);
+
+        const matchId = '3';
+        const team = 'away';
+        const score = 30;
+
+        expect(() => {
+            dashboard.updateLiveScoreboard(matchId, team, score);
+        }).toThrow('No such match');
     });
 });
