@@ -72,7 +72,7 @@ export class Dashboard {
      *
      * @returns {Match[]} An array of Match objects representing the current state of the live scoreboard.
      */
-    getLiveBoardState() {
+    getLiveBoardState(): Match[] {
         return this.liveBoard.getScoreboard();
     }
 
@@ -81,7 +81,7 @@ export class Dashboard {
      *
      * @returns {Match[]} An array of Match objects representing the summary state of the scoreboard.
      */
-    getSummaryBoardState() {
+    getSummaryBoardState(): Match[] {
         return this.summaryBoard.getScoreboard();
     }
 }
