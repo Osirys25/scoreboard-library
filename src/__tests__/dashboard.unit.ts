@@ -21,6 +21,7 @@ describe('src > unit > Dashboard', () => {
         dashboard.summaryBoard = mockSummaryScoreboard;
 
         mockLiveScoreboard.updateMatch = jest.fn();
+        mockLiveScoreboard.getScoreboard = jest.fn();
     });
 
     it('should initialize liveBoard and summaryBoard', () => {
@@ -102,5 +103,35 @@ describe('src > unit > Dashboard', () => {
         expect(() => {
             dashboard.updateLiveScoreboard(matchId, team, score);
         }).toThrow('No such match');
+    });
+
+    it('getLiveBoardState should return live scoreboard state', () => {
+        mockLiveScoreboard.getScoreboard.mockReturnValue([
+            {matchId: 1, score: '10-5'},
+            {matchId: 2, score: '8-8'},
+        ] as unknown as Match[]);
+
+        const result = dashboard.getLiveBoardState();
+
+        expect(result).toEqual([
+            {matchId: 1, score: '10-5'},
+            {matchId: 2, score: '8-8'},
+        ]);
+        expect(mockLiveScoreboard.getScoreboard).toHaveBeenCalled();
+    });
+
+    it('getSummaryBoardState should return summary scoreboard state', () => {
+        mockSummaryScoreboard.getScoreboard.mockReturnValue([
+            {matchId: 1, score: '10-5'},
+            {matchId: 2, score: '8-8'},
+        ] as unknown as Match[]);
+
+        const result = dashboard.getSummaryBoardState();
+
+        expect(result).toEqual([
+            {matchId: 1, score: '10-5'},
+            {matchId: 2, score: '8-8'},
+        ]);
+        expect(mockSummaryScoreboard.getScoreboard).toHaveBeenCalled();
     });
 });

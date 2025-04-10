@@ -66,4 +66,22 @@ export class Dashboard {
             throw new Error('No such match');
         }
     }
+
+    /**
+     * Retrieves the current state of the live scoreboard.
+     *
+     * @returns {Match[]} An array of Match objects representing the current state of the live scoreboard.
+     */
+    getLiveBoardState() {
+        return this.liveBoard.getScoreboard();
+    }
+
+    /**
+     * Retrieves the summary state of the scoreboard.
+     *
+     * @returns {Match[]} An array of Match objects representing the summary state of the scoreboard.
+     */
+    getSummaryBoardState() {
+        return this.summaryBoard.getScoreboard();
+    }
 }
