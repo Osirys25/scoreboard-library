@@ -27,7 +27,26 @@ export class Dashboard {
         this.summaryBoard = new SummaryScoreboard();
     }
 
-    updateLiveScoreboard(): void {}
+    /**
+     * Updates the live scoreboard for a specific match.
+     *
+     * @param {string} matchId - The identifier of the match to be updated.
+     * @param {'away' | 'home'} team - The team whose score is to be updated ('away' or 'home').
+     * @param {number} score - The new score to be assigned to the team.
+     * @throws {Error} If no match with the given identifier exists.
+     * @returns {void}
+     */
+    updateLiveScoreboard(
+        matchId: string,
+        team: 'away' | 'home',
+        score: number
+    ): void {
+        const updatedMatch = this.liveBoard.updateMatch(matchId, team, score);
+
+        if (!updatedMatch) {
+            throw new Error('No such match');
+        }
+    }
 
     /**
      * Finishes the match with the given ID.
