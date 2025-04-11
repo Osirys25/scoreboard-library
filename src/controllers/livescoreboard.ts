@@ -25,6 +25,8 @@ export class LiveScoreboard extends Scoreboard {
     findAndFinishMatch(id: string): Match | null {
         const index = this.table.findIndex(element => element.id === id);
 
+        console.log('finished match index', index);
+
         if (index === -1) {
             return null;
         }
