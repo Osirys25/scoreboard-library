@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint . src --ext .tsx,.ts",
     "lint:fix": "npm run lint -- --fix",
-    "test": "jest"
+    "test": "jest",
+    "test:integration": "jest ./__tests__/dashboard.integrate.ts"
   },
   "dependencies": {},
   "devDependencies": {
