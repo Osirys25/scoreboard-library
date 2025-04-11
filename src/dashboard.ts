@@ -60,8 +60,6 @@ export class Dashboard {
         const finishedMatch: Match | null =
             this.liveBoard.findAndFinishMatch(id);
 
-        console.log('finished match', finishedMatch?.id);
-
         if (finishedMatch) {
             this.summaryBoard.addMatch(finishedMatch);
         } else {

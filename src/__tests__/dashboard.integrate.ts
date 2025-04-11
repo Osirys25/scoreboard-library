@@ -8,10 +8,16 @@ describe('Dashboard Integration Tests', () => {
         expect(dashboard.getSummaryBoardState()).toEqual([]);
     });
 
-    it('should add new matches to LiveBoard', () => {
+    it('should add new matches to LiveBoard', async () => {
         dashboard.liveBoard.addMatch('Team 1', 'Team 2');
-        dashboard.liveBoard.addMatch('Team 2', 'Team 3');
+
+        await new Promise(r => setTimeout(r, 2000));
+
         dashboard.liveBoard.addMatch('Team 3', 'Team 4');
+
+        await new Promise(r => setTimeout(r, 2000));
+
+        dashboard.liveBoard.addMatch('Team 5', 'Team 6');
 
         expect(dashboard.getLiveBoardState().length).toEqual(3);
         expect(dashboard.getSummaryBoardState()).toEqual([]);
@@ -48,6 +54,26 @@ describe('Dashboard Integration Tests', () => {
 
         expect(dashboard.getSummaryBoardState().length).toEqual(3);
         expect(dashboard.getLiveBoardState()).toEqual([]);
+    });
+
+    it('should return a summary of matches ordered by their total score and start time', () => {
+        const summary = dashboard.getSummaryBoardState().sort((a, b) => {
+            const totalScoreA = a.homeTeam.score + a.awayTeam.score;
+            const totalScoreB = b.homeTeam.score + b.awayTeam.score;
+            if (totalScoreA !== totalScoreB) {
+                return totalScoreB - totalScoreA;
+            }
+            return b.createdAt.getTime() - a.createdAt.getTime();
+        });
+
+        expect(summary[0].awayTeam.name).toEqual('Team 4');
+        expect(summary[0].homeTeam.name).toEqual('Team 3');
+
+        expect(summary[1].awayTeam.name).toEqual('Team 6');
+        expect(summary[1].homeTeam.name).toEqual('Team 5');
+
+        expect(summary[2].awayTeam.name).toEqual('Team 2');
+        expect(summary[2].homeTeam.name).toEqual('Team 1');
     });
 
     it('should throw error if trying to update non-existent match', () => {
