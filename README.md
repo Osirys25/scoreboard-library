@@ -36,7 +36,12 @@ Welcome to the Live Football World Cup Scoreboard Library repository! This proje
 
 ## Running the Project
 
-To run the project, use the following command:
+To run the integration tests with specific scenarios, use the following command:
+```bash
+  npm run test:integration
+```
+
+To run the project with whole tests, use the following command:
 ```bash
   npm run test
 ```
