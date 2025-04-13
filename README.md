@@ -2,7 +2,10 @@
 
 ## Project Description
 
-Welcome to the Live Football World Cup Scoreboard Library repository! This project is an application built with TypeScript that provides real-time updates on all ongoing matches and their scores during the Football World Cup.
+Welcome to the Live Football World Cup Scoreboard Library repository! This project is an application built with **TypeScript** that provides real-time updates on all ongoing matches and their scores during the Football World Cup.
+
+The project is realized with **TDD** approach. There are unit tests and integration tests realized with **JEST**.
+
 ## Features
 
 - **Modular code structure**: Simplifies management and development of the application.
@@ -50,4 +53,10 @@ To run the project with whole tests, use the following command:
 To lint the project code, use the following command:
 ```bash
   npm run lint
+```
+
+## Prettify the Project
+To prettify the project code, use the following command:
+```bash
+  npm run prettify
 ```
