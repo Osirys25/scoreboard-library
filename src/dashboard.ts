@@ -31,17 +31,21 @@ export class Dashboard {
      * Updates the live scoreboard for a specific match.
      *
      * @param {string} matchId - The identifier of the match to be updated.
-     * @param {'away' | 'home'} team - The team whose score is to be updated ('away' or 'home').
-     * @param {number} score - The new score to be assigned to the team.
+     * @param {number | null} homeTeamScore - Score of the home team.
+     * @param {number | null} awayTeamScore - Score of the away team.
      * @throws {Error} If no match with the given identifier exists.
      * @returns {void}
      */
     updateLiveScoreboard(
         matchId: string,
-        team: 'away' | 'home',
-        score: number
+        homeTeamScore: number | null,
+        awayTeamScore: number | null
     ): void {
-        const updatedMatch = this.liveBoard.updateMatch(matchId, team, score);
+        const updatedMatch = this.liveBoard.updateMatch(
+            matchId,
+            homeTeamScore,
+            awayTeamScore
+        );
 
         if (!updatedMatch) {
             throw new Error('No such match');

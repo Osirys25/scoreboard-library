@@ -31,8 +31,7 @@ describe('Dashboard Integration Tests', () => {
         expect(exampleMatchToUpdate?.awayTeam.score).toBe(0);
         expect(exampleMatchToUpdate?.homeTeam.score).toBe(0);
 
-        dashboard.updateLiveScoreboard(exampleMatchToUpdate.id, 'away', 10);
-        dashboard.updateLiveScoreboard(exampleMatchToUpdate.id, 'home', 2);
+        dashboard.updateLiveScoreboard(exampleMatchToUpdate.id, 2, 10);
 
         const liveBoardStateUpdated = dashboard.getLiveBoardState();
 
@@ -78,11 +77,15 @@ describe('Dashboard Integration Tests', () => {
 
     it('should throw error if trying to update non-existent match', () => {
         const matchId = 'nonExistentMatch';
-        const team = 'home';
-        const score = 10;
+        const homeTeamScore = 10;
+        const awayTeamScore = 20;
 
         expect(() => {
-            dashboard.updateLiveScoreboard(matchId, team, score);
+            dashboard.updateLiveScoreboard(
+                matchId,
+                homeTeamScore,
+                awayTeamScore
+            );
         }).toThrow('No such match');
     });
 
