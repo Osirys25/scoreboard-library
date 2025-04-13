@@ -84,37 +84,37 @@ describe('src > controllers > unit > LiveScoreboard', () => {
     it('should update away team score if team is away', () => {
         scoreboard.addMatch('Team A', 'Team B');
 
-        const score = 10;
+        const awayTeamScore = 10;
         const id = 'Team A';
-        const team = 'away';
+        const homeTeamScore = null;
 
-        scoreboard.updateMatch(id, team, score);
+        scoreboard.updateMatch(id, homeTeamScore, awayTeamScore);
 
-        expect(mockUpdateAwayTeamScore).toHaveBeenCalledWith(score);
+        expect(mockUpdateAwayTeamScore).toHaveBeenCalledWith(awayTeamScore);
         expect(mockUpdateHomeTeamScore).not.toHaveBeenCalled();
     });
 
     it('should update home team score if team is home', () => {
         scoreboard.addMatch('Team A', 'Team B');
 
-        const score = 20;
+        const homeTeamScore = 20;
         const id = 'Team A';
-        const team = 'home';
+        const awayTeamScore = null;
 
-        scoreboard.updateMatch(id, team, score);
+        scoreboard.updateMatch(id, homeTeamScore, awayTeamScore);
 
-        expect(mockUpdateHomeTeamScore).toHaveBeenCalledWith(score);
+        expect(mockUpdateHomeTeamScore).toHaveBeenCalledWith(homeTeamScore);
         expect(mockUpdateAwayTeamScore).not.toHaveBeenCalled();
     });
 
     it('should return null if no match with the given id exists', () => {
         scoreboard.addMatch('Team A', 'Team B');
 
-        const score = 30;
+        const homeTeamScore = 20;
         const id = '12';
-        const team = 'away';
+        const awayTeamScore = 10;
 
-        const result = scoreboard.updateMatch(id, team, score);
+        const result = scoreboard.updateMatch(id, homeTeamScore, awayTeamScore);
 
         expect(result).toBeNull();
         expect(mockUpdateHomeTeamScore).not.toHaveBeenCalled();
