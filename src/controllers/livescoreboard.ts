@@ -37,14 +37,14 @@ export class LiveScoreboard extends Scoreboard {
      * Updates the score for a specific team in a match.
      *
      * @param {string} id - The identifier of the match to be updated.
-     * @param {'away' | 'home'} team - The team whose score is to be updated ('away' or 'home').
-     * @param {number} score - The new score to be assigned to the team.
+     * @param {number | null} homeTeamScore - Score of the home team.
+     * @param {number | null} awayTeamScore - Score of the away team.
      * @returns {boolean | null} Returns null if no match with the given identifier exists, otherwise updates the score.
      */
     updateMatch(
         id: string,
-        team: 'away' | 'home',
-        score: number
+        homeTeamScore?: number | null,
+        awayTeamScore?: number | null
     ): boolean | null {
         const index = this.table.findIndex(element => element.id === id);
 
@@ -52,10 +52,12 @@ export class LiveScoreboard extends Scoreboard {
             return null;
         }
 
-        if (team === 'away') {
-            this.table[index].updateAwayTeamScore(score);
-        } else if (team === 'home') {
-            this.table[index].updateHomeTeamScore(score);
+        if (homeTeamScore) {
+            this.table[index].updateHomeTeamScore(homeTeamScore);
+        }
+
+        if (awayTeamScore) {
+            this.table[index].updateAwayTeamScore(awayTeamScore);
         }
 
         return true;
