@@ -7,7 +7,8 @@
     "lint": "eslint . src --ext .tsx,.ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
-    "test:integration": "jest ./__tests__/dashboard.integrate.ts"
+    "test:integration": "jest ./__tests__/dashboard.integrate.ts",
+    "prettify": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {},
   "devDependencies": {
