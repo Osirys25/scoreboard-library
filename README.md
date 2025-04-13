@@ -19,7 +19,7 @@ The project is realized with **TDD** approach. There are unit tests and integrat
 - **Jest 29+**
 
 ## Requirements
-- Node.js (version 14 or newer)
+- Node.js (version 20 or newer)
 - npm
 
 ## Installation
